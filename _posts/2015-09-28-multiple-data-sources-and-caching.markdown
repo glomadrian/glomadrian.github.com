@@ -37,3 +37,9 @@ In this post i will try to explain how to accomplish this, always with a SOLID,
 Clean and reusable code.
 
 ### Data, data and mode data
+
+
+[<img src="{{ '/assets/img/2015-09-28-multiple-data-sources-and-caching/data_access_cache.jpg' | prepend: site.baseurl }}" alt="data sources and cache">][1]
+
+TODO
+[1]: {{ '/assets/img/2015-09-28-multiple-data-sources-and-caching/data_access_cache.jpg' | prepend: site.baseurl }}
