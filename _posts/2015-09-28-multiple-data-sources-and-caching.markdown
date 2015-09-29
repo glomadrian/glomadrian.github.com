@@ -51,15 +51,15 @@ yelow, red and green layers on [this][2] clean architecture images.
 
 #### Data Access layer
 
-The data access layer correspond with API implementations, databases, or any
-data source use to work with data, this implmentations know nothing of domain models, and can be
-used in other projects without any modifications, there are no part of your application logic.
+The data access layer correspond with API implementations, databases, or any source of data you like,
+this implmentations know nothing of domain models, and can be used in other projects
+without any modifications, there are no part of your application logic.
 
 
-### Application context
+### Example Application
 
-The example application (source code link below) show 20 Android news, by default
-the news are take from database, if not then are fetch from the Cloud. The update
+The example application (source code link below) show 20 Android news from today,
+by default the news are take from database, if not are fetch from the Cloud. The update
 from Cloud may be forced, every time the application fetch data from the cloud
 the database should be updated.
 
@@ -69,14 +69,16 @@ This is the story of a use case, his name is **GetTodayNewsInteractor**. GetToda
 thought the View - Presenter - Use Case - Repository - Policity - Memory and API
 and then returned to the View with a lot of news to show, but what happens in this travel?
 
+I assume you know MVP pattern, lest start form the presenter
+
 #### Inside the Presenter
 
-The presenter have a injtected instance of GetTodayNewsInteractor use case that will be
+The presenter have a injtected instance of GetTodayNewsInteractor use case, that will be
 executed and run in a new thread
 
 #### Inside the GetTodayNewsInteractor
 
-GetAllNews have a dependency of a NewsRepository, this repository have several
+**GetAllNews** have a dependency of a **NewsRepository**, this repository have several
 ways to get the data, the interactor ask for the data and tells the policity to
 use
 
@@ -95,8 +97,8 @@ List<NewItem> newItems = newsRepository
 
 The repository have the responsibility to abstract the data access from other
 business logic. Usually a repository have a instance of a data source to get
-the data from it, then map to a domain model and return to business logic, in
-this pattern the repository delegates the data access policies and mapping to a
+the data from it, then map it to a domain model and return to business logic, in
+this pattern the repository delegates the data access to the policies and the apping to a
 data sources but it reamains an abstraction layer for bussiness logic.
 
 The Repository have one of several policies to ask for data, that depends of
@@ -126,7 +128,7 @@ public List<NewItem> getTodayNews() {
 #### Inside the NewsDataBaseFirstPolicy
 
 The policy is where all of this make sense, it have several data sources injtected
-and make use of them to get the data in the way you want to do this.
+and make use of them to get the data in the way you want to do.
 
 {% highlight java %}
 @Override
@@ -149,8 +151,8 @@ private List<NewItem> obtainFromCloud() {
 }
 {% endhighlight %}
 
- This policity try to obtain from the data base source if getting exception
- then try to get from the cloud data source and save it to data base for
+ This policity try to obtain the data from **DataBaseSource**, if getting exception
+ then try to get from the **CloudDataSource** and save it to data base for
  future usage.
 
 ##### TIPS
@@ -162,8 +164,8 @@ private List<NewItem> obtainFromCloud() {
 The data sources are bridges between you application domain and the data domain,
 the data sources know the especific data source to be used (injected), and know how to
 convert the specific data model to the domain model (using mappers), in the picture
-above there are tree Data Sources (interfaces) MemoryDataSource, DataBaseDataSource and
-CLoudDataSource i used these to be the most common but can be anything you want
+above there are tree data sources (interfaces) **MemoryDataSource**, **DataBaseDataSource** and
+**CloudDataSource**, i used these to be the most common but can be anything you want.
 
 Example of Cloud Data Source method
 
