@@ -30,7 +30,7 @@ every time the user enter in the application?, the answer is no.
 
 if you are an Android Developer then i suppose you are familiar with the Picasso library
 from square, picasso take care about obtain and store the images for you, if an image
-is already downloaded you don't need to download it again, why don't use this approach with the data?
+is already downloaded you don't need to download it again, why not use this approach with the data?
 
 
 In this post I going to try explain how to accomplish this, always with a SOLID,
@@ -68,7 +68,7 @@ the database should be updated.
 ### Tell me a history
 
 This is the story of a use case, his name is **GetTodayNewsInteractor**. GetTodayNewsInteractor travel
-thought the View - Presenter - Use Case - Repository - Policity - Memory and API
+thought the Presenter - Use Case - Repository - Policity - Memory and API
 and then returned to the View with a lot of news to show, but what happens in this travel?
 
 I assume you know MVP pattern, lest start form the presenter
