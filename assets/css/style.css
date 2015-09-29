@@ -875,6 +875,8 @@ dd {
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
     font-weight: 300
 }
+
+p.meta {}
 .post figure {
     margin: 3rem 0
 }
@@ -1121,6 +1123,7 @@ dd {
         clear: both
     }
     .header h1 {
+
         font-size: 3em;
         line-height: 1;
         letter-spacing: -3px;
@@ -1171,12 +1174,28 @@ dd {
     .post h3,
     .post h4,
     .post h5,
-    .post h6,
-    .post p,
+    .post h6 {
+        color: #338B57;
+        width: 74.46809%;
+        float: left;
+        margin-right: 2.12766%;
+        float: none;
+        margin: 0 auto 2rem
+    }
+
+    .post p {
+         width: 74.46809%;
+        float: left;
+        margin-right: 2.12766%;
+        float: none;
+        margin: 0 auto 2rem;
+        color: #404040;
+    }
     .post ul,
     .post ol,
     .post dl,
     .post .pageTitle {
+
         width: 74.46809%;
         float: left;
         margin-right: 2.12766%;
