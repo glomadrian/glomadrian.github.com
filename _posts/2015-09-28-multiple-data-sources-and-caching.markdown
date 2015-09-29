@@ -41,5 +41,154 @@ Clean and reusable code.
 
 [<img src="{{ '/assets/img/2015-09-28-multiple-data-sources-and-caching/data_access_cache.jpg' | prepend: site.baseurl }}" alt="data sources and cache">][1]
 
-TODO
+As you can see in the picture there are two main layers on it, the domain layer
+and the data access layer, this two layers must be decoupled each other.
+
+#### Domain layer
+
+The domain layers are bussiness logic of your application, correspond with the
+yelow, red and green layers on [this][2] clean architecture images.
+
+#### Data Access layer
+
+The data access layer correspond with API implementations, databases, or any
+data source use to work with data, this implmentations know nothing of domain models, and can be
+used in other projects without any modifications, there are no part of your application logic.
+
+
+### Application context
+
+The example application (source code link below) show 20 Android news, by default
+the news are take from database, if not then are fetch from the Cloud. The update
+from Cloud may be forced, every time the application fetch data from the cloud
+the database should be updated.
+
+### Tell me a history
+
+This is the story of a use case, his name is **GetTodayNewsInteractor**. GetTodayNewsInteractor travel
+thought the View - Presenter - Use Case - Repository - Policity - Memory and API
+and then returned to the View with a lot of news to show, but what happens in this travel?
+
+#### Inside the Presenter
+
+The presenter have a injtected instance of GetTodayNewsInteractor use case that will be
+executed and run in a new thread
+
+#### Inside the GetTodayNewsInteractor
+
+GetAllNews have a dependency of a NewsRepository, this repository have several
+ways to get the data, the interactor ask for the data and tells the policity to
+use
+
+{% highlight java %}
+List<NewItem> newItems = newsRepository
+                        .withPolicy(NewsPolices.DATABASE_FIRST)
+                        .getTodayNews();
+{% endhighlight %}
+
+##### TIPS
+ * You can have one use case per policy f.i GetTodayNewsCloudInteractor to force
+ cloud update at some time
+
+
+#### Inside the NewsRepository
+
+The repository have the responsibility to abstract the data access from other
+business logic. Usually a repository have a instance of a data source to get
+the data from it, then map to a domain model and return to business logic, in
+this pattern the repository delegates the data access policies and mapping to a
+data sources but it reamains an abstraction layer for bussiness logic.
+
+The Repository have one of several policies to ask for data, that depends of
+your needs, in this example, the repository have two policies and the policy to
+be use can be selected at runtime
+
+{% highlight java %}
+@Override
+public List<NewItem> getTodayNews() {
+  switch (policy) {
+    case DATABASE_FIRST:
+      return databaseFirst();
+    case NETWORK_ONLY_WITH_UPDATE:
+      return networkOnlyWithUpdate();
+    default:
+      return databaseFirst();
+  }
+}
+{% endhighlight %}
+
+##### TIPS
+ * switch - case is for learning purposes, a policies factory is more effective
+ and make Repository follow the open / closed principle
+ * The policy can be injected and changed at compilation time instead of runtime
+ * The logic of the policies can be reused on other projects
+
+#### Inside the NewsDataBaseFirstPolicy
+
+The policy is where all of this make sense, it have several data sources injtected
+and make use of them to get the data in the way you want to do this.
+
+{% highlight java %}
+@Override
+public List<NewItem> getTodayNews() {
+  try {
+    return obtainFromDataBase();
+  } catch (FileDataSourceException e) {
+    List<NewItem> news = obtainFromCloud();
+    dataBaseDataSource.saveNews(news);
+    return news;
+  }
+}
+
+private List<NewItem> obtainFromDataBase() {
+  return dataBaseDataSource.getToadyNews();
+}
+
+private List<NewItem> obtainFromCloud() {
+  return cloudNewsDataSource.getTodayNews();
+}
+{% endhighlight %}
+
+ This policity try to obtain from the data base source if getting exception
+ then try to get from the cloud data source and save it to data base for
+ future usage.
+
+##### TIPS
+  * The policy make all data decisions, keep it clean and readable
+  * Make the policy with the reusability in mind
+
+#### Inside the DataSources
+
+The data sources are bridges between you application domain and the data domain,
+the data sources know the especific data source to be used (injected), and know how to
+convert the specific data model to the domain model (using mappers), in the picture
+above there are tree Data Sources (interfaces) MemoryDataSource, DataBaseDataSource and
+CLoudDataSource i used these to be the most common but can be anything you want
+
+Example of Cloud Data Source method
+
+{% highlight java %}
+@Override
+public List<NewItem> getTodayNews() {
+  AlchemyResponse alchemyResponse = alchemyApi.getNews(YESTERDAY,
+     TODAY, title, genere, count);
+  return alchemyResponseNewsMapper.map(alchemyResponse);
+}
+{% endhighlight %}
+
+##### TIPS
+  * The data source only fetch data and transform it  
+
+#### Back from the travel
+
+The data response go back to the View and is presented to the User
+
+### The code!
+
+The project source code can be found on [Github][3]
+
+
+
 [1]: {{ '/assets/img/2015-09-28-multiple-data-sources-and-caching/data_access_cache.jpg' | prepend: site.baseurl }}
+[2]: {{ '/assets/img/2015-09-28-multiple-data-sources-and-caching/cleanArchitecture.jpg' | prepend: site.baseurl }}
+[3]: https://github.com/glomadrian/Multiple-data-sources-and-caching-example

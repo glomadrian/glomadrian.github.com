@@ -433,6 +433,8 @@ th:last-child {
     border-right: 0
 }
 .highlight {
+    width: 78%;
+    margin: 0 auto;
     white-space: pre;
     overflow: auto;
     word-wrap: normal;
@@ -545,6 +547,7 @@ th:last-child {
     color: #fff
 }
 body {
+    background-color: #404040;
     font-size: 1em;
     line-height: 1.45
 }
@@ -700,7 +703,7 @@ object {
     max-width: 100%
 }
 .container {
-    max-width: 610px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     padding: 0 20px
@@ -1075,7 +1078,7 @@ dd {
         transform-origin: bottom left
     }
     .container {
-        max-width: 800px;
+        max-width: 100%;
         margin-left: auto;
         margin-right: auto;
         padding: 0
@@ -1269,7 +1272,8 @@ nav {
   text-align: right;
 }
 #glomadrian {
-    width: 900px;
+    background-color: #FFFFFF;
+    width: 1000px;
     display: table;
     margin: 0 auto;
     font-family: 'Roboto';
