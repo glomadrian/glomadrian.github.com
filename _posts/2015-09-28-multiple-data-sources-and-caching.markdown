@@ -80,7 +80,7 @@ executed and run in a new thread
 
 #### Inside the GetTodayNewsInteractor
 
-**GetAllNews** have a dependency of a **NewsRepository**, this repository have several
+**GetAllNews** have a dependency or a **NewsRepository**, this repository have several
 ways to get the data, the interactor ask for the data and tells the policity to
 use
 
