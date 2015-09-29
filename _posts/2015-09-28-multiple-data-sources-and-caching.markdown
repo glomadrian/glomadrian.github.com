@@ -86,7 +86,7 @@ use
 
 {% highlight java %}
 List<NewItem> newItems = newsRepository
-                        .withPolicy(NewsPolices.DATABASE_FIRST)
+                        .withPolicy(NewsPolicies.DATABASE_FIRST)
                         .getTodayNews();
 {% endhighlight %}
 
