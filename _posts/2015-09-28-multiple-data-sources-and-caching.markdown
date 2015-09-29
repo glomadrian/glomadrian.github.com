@@ -187,6 +187,10 @@ The data response go back to the View and is presented to the User
 
 The project source code can be found on [Github][3]
 
+### Thanks
+
+I hope you found this post interesting and useful
+if you think something can be improved or changed I'll be happy to send me an email
 
 
 [1]: {{ '/assets/img/2015-09-28-multiple-data-sources-and-caching/data_access_cache.jpg' | prepend: site.baseurl }}
