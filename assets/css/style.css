@@ -1299,7 +1299,6 @@ nav {
 #glomadrian {
     background-color: #FFFFFF;
     max-width: 1000px;
-    display: table;
     margin: 0 auto;
     font-family: 'Roboto';
     -webkit-box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.35);
