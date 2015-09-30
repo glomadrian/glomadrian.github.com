@@ -560,6 +560,7 @@ body .intro {
         font-size: 1em;
         line-height: 1.375
     }
+
 }
 h1,
 .h1,
@@ -810,7 +811,8 @@ dd {
     background-position: center center;
     color: white;
     padding: 0;
-    height: 3em
+    
+
 }
 .header .container {
     padding: 0;
@@ -1278,25 +1280,39 @@ p.meta {}
         float: right;
         margin-right: 0
     }
+
+
+
 }
 .logo a{
   color: #FFFFFF;
   font-size: 3em;
   text-decoration: none;
   float: right;
-
 }
+
 
 nav {
   text-align: right;
 }
+
 #glomadrian {
     background-color: #FFFFFF;
-    width: 1000px;
+    max-width: 1000px;
     display: table;
     margin: 0 auto;
     font-family: 'Roboto';
     -webkit-box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.35);
     -moz-box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.35);
     box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.35);
+}
+
+@media only screen and (max-device-width: 480px) {
+    .logo a{
+      color: #FFFFFF;
+      font-size: 2em;
+      text-decoration: none;
+      float: right;
+    }
+
 }
