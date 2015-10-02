@@ -20,12 +20,12 @@ Before you star reading this post, I assume you have knowledge about:
 
  <p> In the most of Android applications there are an API that provide data,
  the application start, fetch the data and show it in the screen, that's perfect,
- but what happens when network connection fails? no data to fecth, no data to show,
+ but what happens when network connection fails? no data to fetch, no data to show,
  the application comes unusable, an awesome and sad image is showing at best</p>
 
 <img src="{{ '/assets/img/2015-09-28-multiple-data-sources-and-caching/sad_cloud_google.png' | prepend: site.baseurl }}" alt="no network image">
 
-Maybe the connection is never lost, but it is necessary to fetch the data from the API,
+Maybe the connection is never lost, but is it necessary to fetch the data from the API,
 every time the user enter in the application?, the answer is no.
 
 if you are an Android Developer then I suppose you are familiar with the Picasso library
