@@ -4,7 +4,7 @@ title:  "Multiple data sources and caching"
 date:   2015-09-29
 ---
 
-Before you star reading this post, i assume you have knowledge about:
+Before you star reading this post, I assume you have knowledge about:
 
 * Clean Architecture
 * Repository Pattern
@@ -28,7 +28,7 @@ Before you star reading this post, i assume you have knowledge about:
 Maybe the connection is never lost, but it is necessary to fetch the data from the API,
 every time the user enter in the application?, the answer is no.
 
-if you are an Android Developer then i suppose you are familiar with the Picasso library
+if you are an Android Developer then I suppose you are familiar with the Picasso library
 from square, picasso take care about obtain and store the images for you, if an image
 is already downloaded you don't need to download it again, why not use this approach with the data?
 
@@ -167,7 +167,7 @@ The data sources are bridges between you application domain and the data domain,
 the data sources know the especific data source to be used (injected), and know how to
 convert the specific data model to the domain model (using mappers), in the picture
 above there are tree data sources (interfaces) **MemoryDataSource**, **DataBaseDataSource** and
-**CloudDataSource**, i used these to be the most common but can be anything you want.
+**CloudDataSource**, I used these to be the most common but can be anything you want.
 
 Example of Cloud Data Source method
 
