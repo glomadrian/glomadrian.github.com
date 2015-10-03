@@ -574,76 +574,96 @@ h5,
 .h5,
 h6,
 .h6 {
+    color: #338B57;
     margin: .5rem 0 1.5rem;
     font-family: "Open Sans", Helvetica, Arial, sans-serif
 }
 h1,
 .h1 {
+    color: #338B57;
     font-size: 2em;
     line-height: 1.25
 }
 @media (min-width: 43.75em) {
     h1,
     .h1 {
+        color: #338B57;
         font-size: 2.5em;
         line-height: 1.125
     }
+
 }
 @media (min-width: 56.25em) {
     h1,
     .h1 {
+        color: #338B57;
         font-size: 3em;
         line-height: 1.05
     }
+
 }
 h2,
 .h2 {
+    color: #338B57;
     font-size: 1.625em;
     line-height: 1.15384615
 }
 @media (min-width: 43.75em) {
     h2,
     .h2 {
+        color: #338B57;
         font-size: 2em;
         line-height: 1.25
     }
+
 }
 @media (min-width: 56.25em) {
     h2,
     .h2 {
+        color: #338B57;
         font-size: 2.25em;
         line-height: 1.25
     }
+
 }
 h3,
 .h3 {
+    color: #338B57;
     font-size: 1.375em;
     line-height: 1.13636364
 }
+
 @media (min-width: 43.75em) {
     h3,
     .h3 {
+        color: #338B57;
         font-size: 1.5em;
         line-height: 1.25
     }
+
 }
 @media (min-width: 56.25em) {
     h3,
     .h3 {
+        color: #338B57;
         font-size: 1.75em;
         line-height: 1.25
     }
+
 }
 h4,
 .h4 {
+    color: #338B57;
     font-size: 1.125em;
     line-height: 1.11111111
 }
 @media (min-width: 43.75em) {
     h4,
     .h4 {
+        color: #338B57;
         line-height: 1.22222222
     }
+
 }
 blockquote {
     font-size: 1.25em;
@@ -655,6 +675,7 @@ blockquote {
         font-size: 1.5em;
         line-height: 1.45833333
     }
+
 }
 .clearfix {
     zoom: 1
@@ -811,7 +832,7 @@ dd {
     background-position: center center;
     color: white;
     padding: 0;
-    
+
 
 }
 .header .container {
@@ -898,6 +919,7 @@ p.meta {}
 .post .highlight {
     clear: both;
     margin-bottom: 2rem
+
 }
 .post .dropcap {
     color: #2e8b57;
@@ -1118,6 +1140,7 @@ p.meta {}
         max-width: 800px;
         margin-left: auto;
         margin-right: auto
+
     }
     .header .container:after {
         content: " ";
@@ -1125,7 +1148,6 @@ p.meta {}
         clear: both
     }
     .header h1 {
-
         font-size: 3em;
         line-height: 1;
         letter-spacing: -3px;
@@ -1216,9 +1238,11 @@ p.meta {}
     .post .h5,
     .post h6,
     .post .h6 {
-        margin: 1rem auto
+       color: #338B57;
+       margin: 1rem auto
     }
     .post .pageTitle {
+
         margin: 2rem auto 1em
     }
     .post .featuredImage {
@@ -1313,5 +1337,16 @@ nav {
       text-decoration: none;
       float: right;
     }
+    body{
+        background-color: black;
+    }
+}
+
+@media (max-width: 50.25em) {
+    .highlight {
+    width: 100%;
+
+}
+}
 
 }
