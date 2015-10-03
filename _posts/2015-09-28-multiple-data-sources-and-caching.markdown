@@ -25,12 +25,13 @@ Before you star reading this post, I assume you have knowledge about:
 
 <img src="{{ '/assets/img/2015-09-28-multiple-data-sources-and-caching/sad_cloud_google.png' | prepend: site.baseurl }}" alt="no network image">
 
-Maybe the connection is never lost, but is it necessary to fetch the data from the API,
-every time the user enter in the application?, the answer is no.
+Maybe the connection is never lost, but, is it necessary to fetch the data from
+the API every time the user enter in the application? The answer is no.
 
-if you are an Android Developer then I suppose you are familiar with the Picasso library
-from square, picasso take care about obtain and store the images for you, if an image
-is already downloaded you don't need to download it again, why not use this approach with the data?
+If you are an Android Developer then I suppose that you are familiar with Picasso
+ library from square. Picasso takes care about obtain and store the images for
+ you, if an image is already downloaded you don't need to download it again,
+ why not use this approach with the data?
 
 
 In this post I going to try explain how to accomplish this, always with a SOLID,
@@ -46,43 +47,36 @@ and the data access layer, this two layers must be decoupled each other.
 
 #### Domain layer
 
+[<img src="{{ '/assets/img/2015-09-28-multiple-data-sources-and-caching/cleanArchitecture.jpg' | prepend: site.baseurl }}" alt="data sources and cache">][2]
+
 The domain layers are bussiness logic of your application, correspond with the
-yelow, red and green layers on [this][2] clean architecture images.
+yellow, red and green layers on clean architecture.
 
 #### Data Access layer
 
-The data access layer correspond with API implementations, databases, or any source of data you like,
-this implmentations know nothing of domain models, and can be used in other projects
-without any modifications, there are no part of your application logic.
-
+The data access layer correspond with API implementations, databases, or any source of data you like. This implementations know nothing of domain models, and can be used in other projects without any modifications, there are no part of your application logic.
 
 ### Example Application
 
-The example application (source code link below) show 20 Android news from today,
-by default the news are take from database, if not are fetch from the Cloud. The update
-from Cloud may be forced, every time the application fetch data from the cloud
-the database should be updated.
+The example application (source code link below) shows 20 Android news from today. By default if there are not data to fetch from the cloud, the news are take from database. The update from cloud may be forced. Every time the application fetchs data from the cloud, the database should be updated.
 
 <img  height="500" src="{{ '/assets/img/2015-09-28-multiple-data-sources-and-caching/appdemo.gif' | prepend: site.baseurl }}" alt="Application Demo">
 
 ### Tell me a history
 
-This is the story of a use case, his name is **GetTodayNewsInteractor**. GetTodayNewsInteractor travel
-thought the Presenter - Use Case - Repository - Policity - Memory and API
-and then returned to the View with a lot of news to show, but what happens in this travel?
+This is the story of a use case, his name is **GetTodayNewsInteractor**. GetTodayNewsInteractor travels through the Presenter -> Use Case -> Repository -> Policity -> Memory and API and then returned to the View with a lot of news to show, but, what happens in this travel?
 
-I assume you know MVP pattern, lest start form the presenter
+I assume you know MVP pattern. Let start form the presenter.
 
 #### Inside the Presenter
 
-The presenter have a injtected instance of GetTodayNewsInteractor use case, that will be
-executed and run in a new thread
+The presenter has an injected instance of GetTodayNewsInteractor use case, that will be executed and run in a new thread.
+
 
 #### Inside the GetTodayNewsInteractor
 
-**GetAllNews** have a dependency or a **NewsRepository**, this repository have several
-ways to get the data, the interactor ask for the data and tells the policity to
-use
+**GetAllNews** has a **NewsRepository** dependency. This repository has several ways to get the data,. The interactor asks for the data and tells which policy use.
+
 
 {% highlight java %}
 List<NewItem> newItems = newsRepository
@@ -91,21 +85,15 @@ List<NewItem> newItems = newsRepository
 {% endhighlight %}
 
 ##### TIPS
- * You can have one use case per policy f.i GetTodayNewsCloudInteractor to force
- cloud update at some time
+ * You can have one use case per policy. For instance, GetTodayNewsCloudInteractor to force cloud update at some time.
+
 
 
 #### Inside the NewsRepository
 
-The repository have the responsibility to abstract the data access from other
-business logic. Usually a repository have a instance of a data source to get
-the data from it, then map it to a domain model and return to business logic, in
-this pattern the repository delegates the data access to the policies and the apping to a
-data sources but it reamains an abstraction layer for bussiness logic.
+The repository has the responsibility to abstract the data access from other business logic. Usually a repository has an instance of a data source to get the data from it, then map it to a domain model and returns to business logic. In this pattern, the repository delegates the data access to the policies and the mapping to a data sources, but it remains an abstraction layer for bussiness logic.
 
-The Repository have one of several policies to ask for data, that depends of
-your needs, in this example, the repository have two policies and the policy to
-be use can be selected at runtime
+The repository has one of several policies to ask for data, that depends of your needs. In this example, the repository have two policies and the policy to be used can be selected at runtime.
 
 {% highlight java %}
 @Override
@@ -160,11 +148,12 @@ private List<NewItem> obtainFromCloud() {
 ##### TIPS
   * The policy make all data decisions, keep it clean and readable
   * Make the policy with the reusability in mind
+  * The cache invalidation happens inside the policity
 
 #### Inside the DataSources
 
 The data sources are bridges between you application domain and the data domain,
-the data sources know the especific data source to be used (injected), and know how to
+the data sources know the specific data source to be used (injected), and know how to
 convert the specific data model to the domain model (using mappers), in the picture
 above there are tree data sources (interfaces) **MemoryDataSource**, **DataBaseDataSource** and
 **CloudDataSource**, I used these to be the most common but can be anything you want.
