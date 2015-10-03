@@ -91,9 +91,9 @@ List<NewItem> newItems = newsRepository
 
 #### Inside the NewsRepository
 
-The repository has the responsibility to abstract the data access from other business logic. Usually a repository has an instance of a data source to get the data from it, then map it to a domain model and returns to business logic. In this pattern, the repository delegates the data access to the policies and the mapping to a data sources, but it remains an abstraction layer for bussiness logic.
+The repository has the responsibility to abstract the data access from other business logic. Usually a repository has an instance of a data source to get the data from it, then map it to a domain model and return to business logic. In this pattern, the repository delegates the data access to the policies and the mapping to a data sources, but it remains an abstraction layer for bussiness logic.
 
-The repository has one of several policies to ask for data, that depends of your needs. In this example, the repository have two policies and the policy to be used can be selected at runtime.
+The repository has one or several policies to ask for data, that depends of your needs. In this example, the repository have two policies and the policy to be used can be selected at runtime.
 
 {% highlight java %}
 @Override
@@ -110,15 +110,13 @@ public List<NewItem> getTodayNews() {
 {% endhighlight %}
 
 ##### TIPS
- * switch - case is for learning purposes, a policies factory is more effective
- and make Repository follow the open / closed principle
- * The policy can be injected and changed at compilation time instead of runtime
- * The logic of the policies can be reused on other projects
+ * switch - case is for learning purposes, a policies factory is more effective and makes repository follow the open / closed principle.
+ * The policy can be injected and changed at compilation time instead of runtime.
+ * The logic of the policies can be reused on other projects.
 
 #### Inside the NewsDataBaseFirstPolicy
 
-The policy is where all of this make sense, it have several data sources injtected
-and make use of them to get the data in the way you want to do.
+The policy is where all of this make sense. It have several data sources injected and makes use of them to get the data in the way you want to do.
 
 {% highlight java %}
 @Override
@@ -141,22 +139,17 @@ private List<NewItem> obtainFromCloud() {
 }
 {% endhighlight %}
 
- This policity try to obtain the data from **DataBaseSource**, if getting exception
- then try to get from the **CloudDataSource** and save it to data base for
- future usage.
+This policiy tries to obtain the data from **DataBaseSource**. If there is an exception then it tries to get the data from the **CloudDataSource** and save it in database for future usages.
+
 
 ##### TIPS
-  * The policy make all data decisions, keep it clean and readable
-  * Make the policy with the reusability in mind
-  * The cache invalidation happens inside the policity
+  * The policy makes all data decisions. Keep it clean and readable.
+  * Make the policy with the reusability in mind.
+  * The cache invalidation happens inside the policity.
 
 #### Inside the DataSources
 
-The data sources are bridges between you application domain and the data domain,
-the data sources know the specific data source to be used (injected), and know how to
-convert the specific data model to the domain model (using mappers), in the picture
-above there are tree data sources (interfaces) **MemoryDataSource**, **DataBaseDataSource** and
-**CloudDataSource**, I used these to be the most common but can be anything you want.
+The data sources are bridges between you application domain and the data domain. The data sources know the specific data source to be used (injected), and know how to convert the specific data model to the domain model (using mappers). In the above picture there are tree data sources (interfaces) **MemoryDataSource**, **DataBaseDataSource** and **CloudDataSource**. In this example I've used them because they are the most common cases, but you can create as many datasources as you need.
 
 Example of Cloud Data Source method
 
@@ -170,11 +163,11 @@ public List<NewItem> getTodayNews() {
 {% endhighlight %}
 
 ##### TIPS
-  * The data source only fetch data and transform it  
+  * The data source only fetches data and then transforms it.
 
 #### Back from the travel
 
-The data response go back to the View and is presented to the User
+The data response go back to the View and is presented to the User.
 
 ### The code!
 
@@ -182,8 +175,7 @@ The project source code can be found on [Github][3]
 
 ### Thanks
 
-I hope you found this post interesting and useful
-if you think something can be improved or changed I'll be happy to send me an email
+I hope you found this post interesting and useful. Please, If you think that something is bad, or can be improved or changed, send me an email and I will gladly review it.
 
 
 [1]: {{ '/assets/img/2015-09-28-multiple-data-sources-and-caching/data_access_cache.jpg' | prepend: site.baseurl }}
