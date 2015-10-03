@@ -177,7 +177,10 @@ The project source code can be found on [Github][3]
 
 I hope you found this post interesting and useful. Please, If you think that something is bad, or can be improved or changed, send me an email and I will gladly review it.
 
+Thanks [@jlmd][4] by the corrections made in this post.
+
 
 [1]: {{ '/assets/img/2015-09-28-multiple-data-sources-and-caching/data_access_cache.jpg' | prepend: site.baseurl }}
 [2]: {{ '/assets/img/2015-09-28-multiple-data-sources-and-caching/cleanArchitecture.jpg' | prepend: site.baseurl }}
 [3]: https://github.com/glomadrian/Multiple-data-sources-and-caching-example
+[4]: https://github.com/jlmd
