@@ -21,7 +21,7 @@ Before you star reading this post, I assume you have knowledge about:
  <p> In the most of Android applications there are an API that provide data,
  the application start, fetch the data and show it in the screen, that's perfect,
  but what happens when network connection fails? no data to fetch, no data to show,
- the application comes unusable, an awesome and sad image is showing at best</p>
+ the application comes unusable, an awesome and sad image is showing at best.</p>
 
 <img src="{{ '/assets/img/2015-09-28-multiple-data-sources-and-caching/sad_cloud_google.png' | prepend: site.baseurl }}" alt="no network image">
 
@@ -58,7 +58,7 @@ The data access layer correspond with API implementations, databases, or any sou
 
 ### Example Application
 
-The example application (source code link below) shows 20 Android news from today. By default if there are not data to fetch from the cloud, the news are take from database. The update from cloud may be forced. Every time the application fetchs data from the cloud, the database should be updated.
+The example application (source code link below) shows 20 Android news from today. By default if there are not data to fetch from the cloud, the news are taken from database. The update from cloud may be forced. Every time the application fetchs data from the cloud, the database should be updated.
 
 <img  height="500" src="{{ '/assets/img/2015-09-28-multiple-data-sources-and-caching/appdemo.gif' | prepend: site.baseurl }}" alt="Application Demo">
 
@@ -75,7 +75,7 @@ The presenter has an injected instance of GetTodayNewsInteractor use case, that 
 
 #### Inside the GetTodayNewsInteractor
 
-**GetAllNews** has a **NewsRepository** dependency. This repository has several ways to get the data,. The interactor asks for the data and tells which policy use.
+**GetAllNews** has a **NewsRepository** dependency. This repository has several ways to get the data. The interactor asks for the data and tells which policy use.
 
 
 {% highlight java %}
