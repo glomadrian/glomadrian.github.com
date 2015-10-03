@@ -42,19 +42,13 @@ Clean and reusable code.
 
 [<img src="{{ '/assets/img/2015-09-28-multiple-data-sources-and-caching/data_access_cache.jpg' | prepend: site.baseurl }}" alt="data sources and cache">][1]
 
-As you can see in the picture there are two main layers on it, the domain layer
-and the data access layer, this two layers must be decoupled each other.
-
-#### Domain layer
+The above image represents the architecture for use multiple datasources with policies (data, cache), layers are separated by colors, this colors correspond with the clean architecture image below.
 
 [<img src="{{ '/assets/img/2015-09-28-multiple-data-sources-and-caching/cleanArchitecture.jpg' | prepend: site.baseurl }}" alt="data sources and cache">][2]
 
-The domain layers are bussiness logic of your application, correspond with the
-yellow, red and green layers on clean architecture.
+#### Data layer
 
-#### Data Access layer
-
-The data access layer correspond with API implementations, databases, or any source of data you like. This implementations know nothing of domain models, and can be used in other projects without any modifications, there are no part of your application logic.
+The data layer are: repositories, datasources, apis, databases, etc. All the data magic happens here. The data policies below to this layer, in this post we will focus on this layer to build some data and cache policies.
 
 ### Example Application
 
