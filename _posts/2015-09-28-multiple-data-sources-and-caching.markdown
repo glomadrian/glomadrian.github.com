@@ -38,7 +38,7 @@ If you are an Android Developer then I suppose that you are familiar with Picass
 In this post I going to try explain how to accomplish this, always with a SOLID,
 Clean and reusable code.
 
-### Data, data and mode data
+### Data, data and more data
 
 
 [<img src="{{ '/assets/img/2015-09-28-multiple-data-sources-and-caching/data_access_cache.jpg' | prepend: site.baseurl }}" alt="data sources and cache">][1]
