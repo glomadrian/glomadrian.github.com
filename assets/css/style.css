@@ -1330,6 +1330,12 @@ nav {
     box-shadow: 0px 0px 12px 1px rgba(0, 0, 0, 0.35);
 }
 
+#comments {
+  max-width: 1000px;
+  width: 78%;
+  margin: 0 auto;
+}
+
 @media only screen and (max-device-width: 480px) {
     .logo a{
       color: #FFFFFF;
@@ -1345,8 +1351,11 @@ nav {
 @media (max-width: 50.25em) {
     .highlight {
     width: 100%;
-
-}
+    }
+    comments {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
 }
 
 }
